@@ -24,7 +24,7 @@
  *
  */
 function getComposition(f, g) {
-  return function (a) {
+  return function comp(a) {
     return f(g(a));
   };
 }
@@ -47,7 +47,7 @@ function getComposition(f, g) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (param) {
+  return function pow(param) {
     return param ** exponent;
   };
 }
@@ -87,7 +87,7 @@ function getPolynom() {
  */
 function memoize(func) {
   const memo = {};
-  return function (arg) {
+  return function mem(arg) {
     if (memo[`${arg}`]) {
       return memo[`${arg}`];
     }
@@ -141,7 +141,7 @@ function retry(/* func, attempts */) {
  *
  */
 function logger(func, logFunc) {
-  return function (...args) {
+  return function log(...args) {
     logFunc(`${func.name}(${args.map((arg) => JSON.stringify(arg))}) starts`);
     const res = func(...args);
     logFunc(`${func.name}(${args.map((arg) => JSON.stringify(arg))}) ends`);
@@ -164,7 +164,7 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn, ...args1) {
-  return function (...args2) {
+  return function part(...args2) {
     const argsArray = [...args1, ...args2];
     return fn(...argsArray);
   };
@@ -190,7 +190,7 @@ function partialUsingArguments(fn, ...args1) {
  */
 function getIdGeneratorFunction(startFrom) {
   let val = startFrom;
-  return function () {
+  return function idGen() {
     const valToReturn = val;
     val += 1;
     return valToReturn;
