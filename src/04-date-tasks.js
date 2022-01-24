@@ -53,7 +53,7 @@ function parseDataFromIso8601(value) {
  */
 function isLeapYear(date) {
   const y = date.getFullYear();
-  return y % 4 === 0 && y % 100 === 0 && y % 400 === 0;
+  return y % 100 === 0 ? y % 400 === 0 : y % 4 === 0;
 }
 /**
  * Returns the string representation of the timespan between two dates.
@@ -92,8 +92,11 @@ function timeSpanToString(startDate, endDate) {
  *    Date.UTC(2016,3,5,18, 0) => Math.PI
  *    Date.UTC(2016,3,5,21, 0) => Math.PI/2
  */
-function angleBetweenClockHands(/* date */) {
-  throw new Error('Not implemented');
+function angleBetweenClockHands(date) {
+  const minAngle = date.getUTCMinutes() * 6;
+  const HrAngle = (date.getUTCHours() % 12) * 30 + date.getUTCMinutes() * 0.5;
+  const angle = Math.abs(HrAngle - minAngle);
+  return Math.abs(Math.min(angle, 360 - angle)) * (Math.PI / 180);
 }
 
 module.exports = {
