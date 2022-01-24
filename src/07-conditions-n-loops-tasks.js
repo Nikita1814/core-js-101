@@ -178,8 +178,8 @@ function isInsideCircle(circle, point) {
  */
 function findFirstSingleChar(str) {
   for (let i = 0; i < str.length; i += 1) {
-    if (!str.slice(i + 1).includes(str[i])) {
-      return str[i];
+    if (str.indexOf(str.charAt(i)) === i && str.indexOf(str.charAt(i), i + 1) === -1) {
+      return str.charAt(i);
     }
   }
   return null;
@@ -391,8 +391,8 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  /* const testPaths = pathes[0].split('/');
+function getCommonDirectoryPath(pathes) {
+  const testPaths = pathes[0].split('/');
   let commonPath = '';
   for (let i = 0; i < testPaths.length - 1; i += 1) {
     for (let j = 1; j < pathes.length; j += 1) {
@@ -402,7 +402,7 @@ function getCommonDirectoryPath(/* pathes */) {
       commonPath += `${testPaths[i]}/`;
     }
   }
-  return commonPath; */
+  return commonPath;
 }
 
 

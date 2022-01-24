@@ -113,28 +113,24 @@ function fromJSON(proto, json) {
  */
 
 const cssSelectorBuilder = {
-
-  element(value) {
-   this.__elem = `${value}`
-   return this
+  element(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  id(value) {
-    this.__id = `#${value}`
-    return this
+  id(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  class(value) {
-    this.__class =`.${value}`
-    return this
+  class(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  attr(value) {
-    this.__attr = `[${value}]`
+  attr(/* value */) {
+    throw new Error('Not implemented');
   },
 
-  pseudoClass(value) {
-    this.__pseudoClass = `:${value}`
+  pseudoClass(/* value */) {
+    throw new Error('Not implemented');
   },
 
   pseudoElement(/* value */) {
